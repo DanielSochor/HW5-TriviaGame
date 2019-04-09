@@ -11,6 +11,10 @@ h3 {
     text-align: center;
 }
 
+div {
+    text-align: center;
+}
+
 .character {
     width: 200px;
     height: 150px;
