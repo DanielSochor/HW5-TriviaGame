@@ -1,58 +1,58 @@
 // $(document).ready(function () {
 
-    var questionObject = {
-        question1: {
+    var questionArray = [
+        {
             question: "We can hook onto the event of a user pressing and releasing a key by referring to ____.",
             options: [
                 {
-                    A: "event.key"
+                    1: "event.key"
                 },
                 {
-                    B: "document.onkeyup"
+                    2: "document.onkeyup"
                 },
                 {
-                    C: "Answer C"
+                    3: "Answer C"
                 },
                 {
-                    D: "Answer D"
+                    4: "Answer D"
                 }],
-            answer: "B"
+            answer: 2
         },
-        question2: {
+        {
             question: "We can get the key a user has pressed by referencing ____.",
             options: [
                 {
-                    A: "event.key"
+                    1: "event.key"
                 },
                 {
-                    B: "document.onkeyup"
+                    2: "document.onkeyup"
                 },
                 {
-                    C: "Answer C"
+                    3: "Answer C"
                 },
                 {
-                    D: "Answer D"
+                    4: "Answer D"
                 }],
-            answer: "A"
+            answer: 1
         },
-        question3: {
+        {
             question: "A function's ____ are only visble inside the function body.",
             options: [
                 {
-                    A: "Answer A"
+                    1: "Answer A"
                 },
                 {
-                    B: "Answer B"
+                    2: "Answer B"
                 },
                 {
-                    C: "defintions"
+                    3: "defintions"
                 },
                 {
-                    D: "Arguments"
+                    4: "arguments"
                 }],
-            answer: "D"
+            answer: 4
         }
-    }
+    ]
 
 
 

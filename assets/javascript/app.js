@@ -2,11 +2,48 @@ $(document).ready(function () {
 
     //TODO: fix button border, time remaining so height doesn't change, colors
 
-    var questionsAndAnswers = questionObject;
 
-    console.log(questionsAndAnswers);
+    shuffleAnswers();
 
-    //shuffle questions and option
+
+
+
+
+
+    
+
+    function shuffleAnswers() {
+
+
+        console.log("questions in array: " + questionArray.length);
+
+        var randomQuestionIndex = Math.floor(Math.random() * questionArray.length);
+        console.log("randomly selected question index: " + randomQuestionIndex);
+
+        var randomQuestion = questionArray[randomQuestionIndex].question;
+        console.log("randomly selected question: " + randomQuestion);
+
+        var randomQuestionAnswers = questionArray[randomQuestionIndex].options;
+        console.log("answers for randomly selected question: " + randomQuestionAnswers);
+        for (var i = 0; i < questionArray[randomQuestionIndex].options.length; i++) {
+            console.log(questionArray[randomQuestionIndex].options[i]);
+        }
+        var shuffledAnswerArray = (questionArray[randomQuestionIndex].options).sort(function (a, b) { return 0.5 - Math.random() });
+        console.log("shuffled answers: " + shuffledAnswerArray);
+        for (var i = 0; i < shuffledAnswerArray.length; i++) {
+            console.log(shuffledAnswerArray[i]);
+        }
+        var guess = 1;
+        console.log(questionArray[randomQuestionIndex].answer);
+        if (guess == questionArray[randomQuestionIndex].answer) {
+            console.log("your guess is correct");
+        } else {
+            console.log("your guess is incorrect");
+        }
+
+    }
+
+    //shuffle questions and options
 
     //button hover is same for start and each option
 
@@ -70,101 +107,101 @@ $(document).ready(function () {
                 correctAnswer();
             } else if (buttonPressed != answer) {
                 incorrectAnswer();
-        } else {
-            gameOver();
-        }
-
-    }
-
-    function correctAnswer() {
-        console.log("that is the correct answer");
-        clearInterval(timerId);
-    }
-
-    function incorrectAnswer() {
-        console.log("that is not correct answer");
-    }
-
-    function outOfTime() {
-        console.log("you ran out of time");
-    }
-
-    function showCorrectAnswer() {
-        time = 5
-        timer()
-    }
-
-    function gameOver(){
-        console.log("you ran out of time");
-        //show score
-        //show replay button
-    }
-
-    function populateQuestion() {
-        console.log("pop");
-        $(".button").show();
-        var selectedQuestion = questions[Math.floor(Math.random() * questions.length)];
-        $("#question").text(selectedQuestion.question);
-        $("#button1").text(selectedQuestion.answer1);
-        $("#button2").text(selectedQuestion.answer2);
-        $("#button3").text(selectedQuestion.answer3);
-        $("#button4").text(selectedQuestion.answer4);
-    }
-
-
-
-
-    //reset timer value for answering questions and for showing correct answer
-    //var timeIsUp = false;
-    var time = 30;
-    //var timerId = setInterval(countdown, 1000);
-    function timer() {
-        var timerId = setInterval(countdown, 1000);
-        function countdown() {
-            if (time == -1) {
-                clearTimeout(timerId);
-                $("#timer").text("Time is up");
-                outOfTime();
             } else {
-                $("#timer").text(time + ' seconds remaining');
-                time--;
+                gameOver();
             }
-            //return (time);
+
         }
+
+        function correctAnswer() {
+            console.log("that is the correct answer");
+            clearInterval(timerId);
+        }
+
+        function incorrectAnswer() {
+            console.log("that is not correct answer");
+        }
+
+        function outOfTime() {
+            console.log("you ran out of time");
+        }
+
+        function showCorrectAnswer() {
+            time = 5
+            timer()
+        }
+
+        function gameOver() {
+            console.log("you ran out of time");
+            //show score
+            //show replay button
+        }
+
+        function populateQuestion() {
+            console.log("pop");
+            $(".button").show();
+            var selectedQuestion = questions[Math.floor(Math.random() * questions.length)];
+            $("#question").text(selectedQuestion.question);
+            $("#button1").text(selectedQuestion.answer1);
+            $("#button2").text(selectedQuestion.answer2);
+            $("#button3").text(selectedQuestion.answer3);
+            $("#button4").text(selectedQuestion.answer4);
+        }
+
+
+
+
+        //reset timer value for answering questions and for showing correct answer
+        //var timeIsUp = false;
+        var time = 30;
+        //var timerId = setInterval(countdown, 1000);
+        function timer() {
+            var timerId = setInterval(countdown, 1000);
+            function countdown() {
+                if (time == -1) {
+                    clearTimeout(timerId);
+                    $("#timer").text("Time is up");
+                    outOfTime();
+                } else {
+                    $("#timer").text(time + ' seconds remaining');
+                    time--;
+                }
+                //return (time);
+            }
+        }
+
+
+
+        // var countDown = 0;
+        // var answer = 1;
+
+        // function gamle() {
+        //     $(".button").show();
+        //     console.log("game");
+        //     if (availableQuestionsToGuess > 0) {
+        //         time = 30;
+        //         countdown(time);
+        //         populateQuestion();
+        //         if (time >= 0) {
+        //             if (answer = 1) {
+        //                 // you are correct
+        //                 console.log("you are correct");
+        //             } else {
+        //                 //ancser is false
+        //                 //timer is 5 seconds
+        //                 correctAnswer();
+        //                 //call game()
+        //             }
+        //         } else {
+        //             //run out of time
+        //             correctAnswer();
+        //         }
+        //     } else {
+        //         //show results
+        //         //show play again
+        //     }
+        // }
     }
 
-
-
-    // var countDown = 0;
-    // var answer = 1;
-
-    // function gamle() {
-    //     $(".button").show();
-    //     console.log("game");
-    //     if (availableQuestionsToGuess > 0) {
-    //         time = 30;
-    //         countdown(time);
-    //         populateQuestion();
-    //         if (time >= 0) {
-    //             if (answer = 1) {
-    //                 // you are correct
-    //                 console.log("you are correct");
-    //             } else {
-    //                 //ancser is false
-    //                 //timer is 5 seconds
-    //                 correctAnswer();
-    //                 //call game()
-    //             }
-    //         } else {
-    //             //run out of time
-    //             correctAnswer();
-    //         }
-    //     } else {
-    //         //show results
-    //         //show play again
-    //     }
-    // }
-    }
-   
 
 });
