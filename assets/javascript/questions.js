@@ -51,10 +51,24 @@
                     4: "arguments"
                 }],
             answer: 4
+        },
+        {
+            question: "Which is not an cornerstone technology of the World Wide Web?",
+            options: [
+                {
+                    1: "HTML"
+                },
+                {
+                    2: "CSS"
+                },
+                {
+                    3: "SQL"
+                },
+                {
+                    4: "JavaScript"
+                }],
+            answer: 3
         }
     ]
-
-
-
 
 // });
