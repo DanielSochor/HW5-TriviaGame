@@ -5,16 +5,44 @@
             question: "We can hook onto the event of a user pressing and releasing a key by referring to ____.",
             options: [
                 {
-                    1: "event.key"
+                    number:1,
+                    answer: "event.key"
                 },
                 {
-                    2: "document.onkeyup"
+                    number:2,
+                    answer: "document.onkeyup"
                 },
                 {
-                    3: "Answer C"
+                    number:3,
+                    answer: "Answer C"
                 },
                 {
-                    4: "Answer D"
+                    number:4,
+                    answer: "Answer D"
+                }],
+            answer: 2
+        }   
+    ]
+
+    var QquestionArray = [
+        {
+            question: "We can hook onto the event of a user pressing and releasing a key by referring to ____.",
+            options: [
+                {
+                    number:1,
+                    answer: "event.key"
+                },
+                {
+                    number:2,
+                    answer: "document.onkeyup"
+                },
+                {
+                    number:3,
+                    answer: "Answer C"
+                },
+                {
+                    number:4,
+                    answer: "Answer D"
                 }],
             answer: 2
         },
@@ -69,6 +97,6 @@
                 }],
             answer: 3
         }
-    ]
+    ] 
 
 // });

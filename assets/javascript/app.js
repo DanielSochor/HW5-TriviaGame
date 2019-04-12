@@ -2,33 +2,24 @@ $(document).ready(function () {
 
     //TODO: fix button border, time remaining so height doesn't change, colors
 
+
+
+    populateQuestion();
     function populateQuestion() {
         //$(".button").show();
         randomQuestionIndex = Math.floor(Math.random() * questionArray.length);
         randomQuestion = questionArray[randomQuestionIndex].question;
         shuffledAnswerArray = (questionArray[randomQuestionIndex].options).sort(function (a, b) { return 0.5 - Math.random() });
+        console.log(shuffledAnswerArray);
         for (var i = 0; i < shuffledAnswerArray.length; i++) {
             console.log(i);
-            $(".button").show();
-            //$(".button").show().text("Test");
-            //$(".button").attr(i).text(shuffledAnswerArray[i]);
-
-            $(".button [value=i]").text("test");
-            $(".button [value='i']").text("test");
-            //$(".button").value(i).text("test");
-            //$(".button").value('i').text("test");
-            //$(".button").value(1).text("test");
-            //$(".button").value('1').text("test");
-            //$("[.button][value=i]").text("test");
-            //$("[.button][value='i']").text("test");
-            //$('.button[attr="i"]').text(shuffledAnswerArray[i]);
-
             console.log(shuffledAnswerArray[i]);
+            $("#buttons").append('<div class="button">' + shuffledAnswerArray[i].answer + '</div>');
         }
     }
 
     //shuffleAnswers();
-    function shuffleAnswers() {        
+    function shuffleAnswers() {
         var guess = 1;
         console.log(questionArray[randomQuestionIndex].answer);
         if (guess == questionArray[randomQuestionIndex].answer) {
@@ -58,8 +49,9 @@ $(document).ready(function () {
     gameOpeningScreen();
 
     function gameOpeningScreen() {
-        $(".button").hide();
-        $("#button1").show().text("Start!");
+        //$("#buttons").add("div").text("Test");
+        //$(".button").hide();
+        //$("#button1").show().text("Start!");
     }
 
     $(".button").on("click", function () {
@@ -87,7 +79,7 @@ $(document).ready(function () {
 
         function correctAnswer() {
             console.log("that is the correct answer");
-            clearInterval(timerId);
+            timer(true);
         }
 
         function incorrectAnswer() {
@@ -111,7 +103,7 @@ $(document).ready(function () {
 
         function PpopulateQuestion() {
             console.log("pop");
-            
+
             var selectedQuestion = questions[Math.floor(Math.random() * questions.length)];
             $("#question").text(selectedQuestion.question);
             $("#button1").text(selectedQuestion.answer1);
@@ -127,7 +119,10 @@ $(document).ready(function () {
         //var timeIsUp = false;
         var time = 30;
         //var timerId = setInterval(countdown, 1000);
-        function timer() {
+        function timer(cancel) {
+            if (cancel) {
+                clearInterval(timerId)
+            }
             var timerId = setInterval(countdown, 1000);
             function countdown() {
                 if (time == -1) {
