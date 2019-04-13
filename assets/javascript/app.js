@@ -1,57 +1,45 @@
 $(document).ready(function () {
 
     //TODO: fix button border, time remaining so height doesn't change, colors
+    var questionDisplayed = false;
+    var shuffledQuestionArray = [];
+    var shuffledAnswerArray = [];
+    var correctAnswer = 0;
+    var questionCounter = 0;
+    var availableQuestionsToGuess = 0;
 
+    gameOpeningScreen();
 
+    function gameOpeningScreen() {
+        $("#question #buttons").empty();
+        $("#question").append('<div class="button">' + "Start!" + '</div>');
+        randomizeAllQuestions();
+    }
 
-    populateQuestion();
-    function populateQuestion() {
-        //$(".button").show();
-        randomQuestionIndex = Math.floor(Math.random() * questionArray.length);
-        randomQuestion = questionArray[randomQuestionIndex].question;
-        shuffledAnswerArray = (questionArray[randomQuestionIndex].options).sort(function (a, b) { return 0.5 - Math.random() });
+    function randomizeAllQuestions() {
+        shuffledQuestionArray = (questionArray).sort(function (a, b) { return 0.5 - Math.random() });
+        availableQuestionsToGuess = shuffledQuestionArray.length;
+        console.log(shuffledQuestionArray);
+        console.log(availableQuestionsToGuess);
+    }
+
+    //populateQuestionAndAnswers();
+    function populateQuestionAndAnswers() {
+        $("#question #buttons").empty();
+        console.log(questionCounter);
+        console.log(shuffledQuestionArray[questionCounter].question);
+        $("#question").append('<div>' + shuffledQuestionArray[questionCounter].question + '</div>');
+        shuffledAnswerArray = (shuffledQuestionArray[questionCounter].options).sort(function (a, b) { return 0.5 - Math.random() });
         console.log(shuffledAnswerArray);
         for (var i = 0; i < shuffledAnswerArray.length; i++) {
             console.log(i);
             console.log(shuffledAnswerArray[i]);
             $("#buttons").append('<div class="button">' + shuffledAnswerArray[i].answer + '</div>');
+            if (shuffledAnswerArray[i].answer == shuffledQuestionArray[questionCounter].answer) {
+                correctAnswer = shuffledQuestionArray[questionCounter].answer;
+            }
         }
-    }
-
-    //shuffleAnswers();
-    function shuffleAnswers() {
-        var guess = 1;
-        console.log(questionArray[randomQuestionIndex].answer);
-        if (guess == questionArray[randomQuestionIndex].answer) {
-            console.log("your guess is correct");
-        } else {
-            console.log("your guess is incorrect");
-        }
-
-    }
-
-    //shuffle questions and options
-
-    //button hover is same for start and each option
-
-
-
-    var availableQuestionsToGuess = 1;
-    //var availableQuestionsToGuess = questionArray.length;
-    var questionDisplayed = false;
-    var randomQuestionIndex = 0;
-    var randomQuestion = "";
-    var shuffledAnswerArray = [];
-
-
-    var answer = "button1";
-
-    gameOpeningScreen();
-
-    function gameOpeningScreen() {
-        //$("#buttons").add("div").text("Test");
-        //$(".button").hide();
-        //$("#button1").show().text("Start!");
+        questionCounter++;
     }
 
     $(".button").on("click", function () {
@@ -62,18 +50,26 @@ $(document).ready(function () {
     function game() {
         if (availableQuestionsToGuess > 0) {
             if (questionDisplayed == false) {
-                populateQuestion();
-                //countdown();
-                timer();
+                populateQuestionAndAnswers();
                 questionDisplayed = true;
-                thereIsTimeLeft = true;
-            } else if (buttonPressed == answer) {
-                correctAnswer();
-            } else if (buttonPressed != answer) {
-                incorrectAnswer();
             } else {
-                gameOver();
+                //playGame
+
             }
+
+
+
+            //     //countdown();
+            //     timer();
+            //     questionDisplayed = true;
+            //     thereIsTimeLeft = true;
+            // } else if (buttonPressed == answer) {
+            //     correctAnswer();
+            // } else if (buttonPressed != answer) {
+            //     incorrectAnswer();
+            // } else {
+            //     gameOver();
+            // }
 
         }
 
@@ -100,20 +96,6 @@ $(document).ready(function () {
             //show score
             //show replay button
         }
-
-        function PpopulateQuestion() {
-            console.log("pop");
-
-            var selectedQuestion = questions[Math.floor(Math.random() * questions.length)];
-            $("#question").text(selectedQuestion.question);
-            $("#button1").text(selectedQuestion.answer1);
-            $("#button2").text(selectedQuestion.answer2);
-            $("#button3").text(selectedQuestion.answer3);
-            $("#button4").text(selectedQuestion.answer4);
-        }
-
-
-
 
         //reset timer value for answering questions and for showing correct answer
         //var timeIsUp = false;
