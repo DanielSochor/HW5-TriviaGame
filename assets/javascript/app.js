@@ -8,6 +8,7 @@ $(document).ready(function () {
     var shuffledAnswerArray = [];
     var correctAnswers = 0;
     var incorrectAnswers = 0;
+    var unansweredQuestions = 0;
     var questionCounter = 0;
     var availableQuestionsToGuess = 0;
     var countDownTime = 0;
@@ -18,7 +19,8 @@ $(document).ready(function () {
     gameOpeningScreen();
 
     function gameOpeningScreen() {
-        $("#question, #buttonSection").empty();
+        questionCounter = 0;
+        $("#timer, #question, #buttonSection, #playAgain").empty();
         var startButton = $("<button>");
         startButton.addClass("button");
         startButton.text("Start!");
@@ -33,7 +35,7 @@ $(document).ready(function () {
         console.log(availableQuestionsToGuess);
     }
 
-    function populateQuestionAndAnswers() {
+    function populateQuestionAndAnswers() {    
     if (questionCounter < availableQuestionsToGuess) {
         console.log("question counter: " + questionCounter);
         console.log("available quetions to guess: " + availableQuestionsToGuess);
@@ -80,6 +82,8 @@ $(document).ready(function () {
                 $(this).addClass("buttonNotCorrect");
                 answerIsNotCorrect();
             }
+        } else if (buttonText == "Play Again?"){
+            gameOpeningScreen();
         } else {
             console.log("nothing here");
         }
@@ -118,24 +122,37 @@ $(document).ready(function () {
         $("#timer").text('You are correct!');
         countDownTime = 3;
         timerNotDisplayed();
+        correctAnswers++;
     }
 
     function answerIsNotCorrect() {
         $("#timer").text('You are not correct!');
         countDownTime = 3;
         timerNotDisplayed();
+        incorrectAnswers++;
     }
 
     function outOfTime() {
         console.log("You ran out of time");
         countDownTime = 3;
         timerNotDisplayed();
+        unansweredQuestions++;
     }
 
     function showScore() {
         console.log("Show your score");
-        $("#timer").text('Your score:');
-        //show replay button
+        $("#timer").text('Your results!:');
+        $("#question, #buttonSection").empty();
+        $("#buttonSection").append('<div>' + "Correct answers: " + correctAnswers + '</div>');
+        $("#buttonSection").append('<div>' + "_" + '</div>');
+        $("#buttonSection").append('<div>' + "Incorrect answers: " + incorrectAnswers + '</div>');
+        $("#buttonSection").append('<div>' + "_" + '</div>');
+        $("#buttonSection").append('<div>' + "Unanswered questions: " + unansweredQuestions + '</div>');
+        $("#buttonSection").append('<div>' + "_" + '</div>');
+        var restartButton = $("<button>");
+        restartButton.addClass("button");
+        restartButton.text("Play Again?");
+        $("#playAgain").append(restartButton);
     }
 
 });
