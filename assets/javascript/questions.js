@@ -5,43 +5,43 @@ var questionArray = [
         question: "1We can hook onto the event of a user pressing and releasing a key by referring to ____.",
         options: [
             {
-                number: 1,
+                number: 0,
                 answer: "1event.key"
             },
             {
+                number: 1,
+                answer: "Answer document.onkeyup"
+            },
+            {
                 number: 2,
-                answer: "document.onkeyup"
+                answer: "An C"
             },
             {
                 number: 3,
-                answer: "Answer C"
-            },
-            {
-                number: 4,
-                answer: "Answer D"
+                answer: "An D"
             }],
-        answer: 2
+        answer: 1
     },
     {
         question: "2We can get the key a user has pressed by referencing ____.",
         options: [
             {
-                number: 1,
-                answer: "2event.key"
+                number: 0,
+                answer: "Answer 2event.key"
             },
             {
-                number: 2,
+                number: 1,
                 answer: "document.onkeyup"
             },
             {
-                number: 3,
-                answer: "Answer C"
+                number: 2,
+                answer: "An C"
             },
             {
-                number: 4,
-                answer: "Answer D"
+                number: 3,
+                answer: "An D"
             }],
-        answer: 1
+        answer: 0
     }
 ]
 
