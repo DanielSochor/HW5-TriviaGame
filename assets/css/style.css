@@ -42,6 +42,31 @@ div {
     border-color: #17A2B8;
 }
 
+.buttonCorrect {
+    background-color:green;
+}
+
+.buttonNotCorrect {
+    background-color:red;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .styled {
     border: 0;
     line-height: 2.5;

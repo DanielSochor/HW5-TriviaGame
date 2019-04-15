@@ -1,14 +1,19 @@
 $(document).ready(function () {
 
+    //Code is verbose becasue it shuffles the questions and shuffles the answers for each question
+
     //TODO: fix button border, time remaining so height doesn't change, colors
     var questionDisplayed = false;
     var shuffledQuestionArray = [];
     var shuffledAnswerArray = [];
-    var correctAnswer = 0;
+    var correctAnswers = 0;
+    var incorrectAnswers = 0;
     var questionCounter = 0;
     var availableQuestionsToGuess = 0;
     var countDownTime = 0;
     var correctAnswerButton = 0;
+    var intervalId;
+    var answerSelected = false;
 
     gameOpeningScreen();
 
@@ -29,6 +34,10 @@ $(document).ready(function () {
     }
 
     function populateQuestionAndAnswers() {
+    if (questionCounter < availableQuestionsToGuess) {
+        console.log("question counter: " + questionCounter);
+        console.log("available quetions to guess: " + availableQuestionsToGuess);
+        answerSelected = false;
         $("#question, #buttonSection").empty();
         console.log(questionCounter);
         console.log(shuffledQuestionArray[questionCounter].question);
@@ -45,133 +54,88 @@ $(document).ready(function () {
             if (shuffledAnswerArray[i].number == shuffledQuestionArray[questionCounter].answer) {
                 correctAnswer = shuffledAnswerArray[i].number;
                 correctAnswerButton = answerButton.attr("value");
-            }   
+            }
         }
+        countDownTime = 10;
+        timer();
         questionCounter++;
+    } else {
+            showScore()
+        }
     }
 
     $(document).on("click", ".button", function () {
         var buttonText = $(this).text();
         if (buttonText == "Start!") {
             populateQuestionAndAnswers();
-        } else if ($(this).attr("value") != null) {
-            if ($(this).attr("value") == correctAnswerButton){
+        } else if (($(this).attr("value") != null) && (answerSelected == false)) {
+            answerSelected = true;
+            clearInterval(intervalId);
+            clearTimeout(intervalId);
+            if ($(this).attr("value") == correctAnswerButton) {
                 console.log("answer is correct!");
+                $(this).addClass("buttonCorrect");
+                answerIsCorrect();
             } else {
-                console.log("answer is incorrect");
+                $(this).addClass("buttonNotCorrect");
+                answerIsNotCorrect();
             }
         } else {
-            console.log("fill for last else");
+            console.log("nothing here");
         }
     });
 
-    function game() {
-        if (availableQuestionsToGuess > 0) {
-            if (questionDisplayed == false) 
-                questionDisplayed = true;
-                countDownTime = 3;
-                timer();
-            } else if (countDownTime == 0) {
-                outOfTime();
-            } else {
-
-            }
-
-        } 
-            //playGame
-
-  
-        //     //countdown();
-        //     timer();
-        //     questionDisplayed = true;
-        //     thereIsTimeLeft = true;
-        // } else if (buttonPressed == answer) {
-        //     correctAnswer();
-        // } else if (buttonPressed != answer) {
-        //     incorrectAnswer();
-        // } else {
-        //     gameOver();
-        // }
-
-    
-
-    function correctAnswer() {
-        console.log("that is the correct answer");
-        timer(true);
+    function timer() {
+        $("#timer").text("You have " + countDownTime + ' seconds remaining');
+        intervalId = setInterval(count, 1000);
     }
 
-    function incorrectAnswer() {
-        console.log("that is not correct answer");
-    }
-
-    function outOfTime() {
-        console.log("you ran out of time");
-        $("#correctAnswer").text("<div> + The correct answer is: </div>");
-    }
-
-    function showCorrectAnswer() {
-        time = 5
-        timer()
-    }
-
-    function gameOver() {
-        console.log("you ran out of time");
-        //show score
-        //show replay button
-    }
-
-    //reset timer value for answering questions and for showing correct answer
-    //var timeIsUp = false;
-    //var timerId = setInterval(countdown, 1000);
-    function timer(l) {
-        // if (cancel) {
-        //     clearInterval(timerId)
-        // }
-        var timerId = setInterval(countdown, 1000);
-        function countdown() {
-            //console.log("timer is: " + countDownTime);
-            if (countDownTime == -1) {
-                clearTimeout(timerId);
-                $("#timer").text("Time is uP");
-                //outOfTime();
-            } else {
-                $("#timer").text(countDownTime + ' seconds remaining');
-                countDownTime--;
-            }
-            //return (time);
+    function count() {
+        if (countDownTime == 0) {
+            clearTimeout(intervalId);
+            $("#timer").text("Time is up!");
+            outOfTime();
+        } else {
+            countDownTime--;
+            $("#timer").text("You have " + countDownTime + ' seconds remaining');
         }
     }
 
+    function timerNotDisplayed() {
+        intervalId = setInterval(countNotDisplayed, 1000);
+    }
 
+    function countNotDisplayed() {
+        if (countDownTime == 0) {
+            clearTimeout(intervalId);
+            populateQuestionAndAnswers()
+        } else {
+            countDownTime--;
+        }
+    }
 
-    // var countDown = 0;
-    // var answer = 1;
+    function answerIsCorrect() {
+        $("#timer").text('You are correct!');
+        countDownTime = 3;
+        timerNotDisplayed();
+    }
 
-    // function gamle() {
-    //     $(".button").show();
-    //     console.log("game");
-    //     if (availableQuestionsToGuess > 0) {
-    //         time = 30;
-    //         countdown(time);
-    //         populateQuestion();
-    //         if (time >= 0) {
-    //             if (answer = 1) {
-    //                 // you are correct
-    //                 console.log("you are correct");
-    //             } else {
-    //                 //ancser is false
-    //                 //timer is 5 seconds
-    //                 correctAnswer();
-    //                 //call game()
-    //             }
-    //         } else {
-    //             //run out of time
-    //             correctAnswer();
-    //         }
-    //     } else {
-    //         //show results
-    //         //show play again
-    //     }
-    // }
+    function answerIsNotCorrect() {
+        $("#timer").text('You are not correct!');
+        countDownTime = 3;
+        timerNotDisplayed();
+    }
+
+    function outOfTime() {
+        console.log("You ran out of time");
+        countDownTime = 3;
+        timerNotDisplayed();
+    }
+
+    function showScore() {
+        console.log("Show your score");
+        $("#timer").text('Your score:');
+        //show replay button
+    }
 
 });
