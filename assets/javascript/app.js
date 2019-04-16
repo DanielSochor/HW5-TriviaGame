@@ -1,8 +1,7 @@
 $(document).ready(function () {
 
-    //Code is verbose becasue it shuffles the questions and shuffles the answers for each question
+    //Code is verbose because it shuffles the questions and shuffles the answers for each question
 
-    //TODO: fix button border, time remaining so height doesn't change, colors
     var questionDisplayed = false;
     var shuffledQuestionArray = [];
     var shuffledAnswerArray = [];

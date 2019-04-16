@@ -84,6 +84,27 @@ var questionArray = [
                 answer: "JavaScript"
             }],
         answer: 2
+    },
+    {
+        question: "To grab the first letter of a string we can use the ____ method",
+        options: [
+            {
+                number: 0,
+                answer: "chatAt(0)"
+            },
+            {
+                number: 1,
+                answer: "scientific"
+            },
+            {
+                number: 2,
+                answer: "SQL"
+            },
+            {
+                number: 3,
+                answer: "JavaScript"
+            }],
+        answer: 2
     }
 ]
 
