@@ -2,121 +2,88 @@
 
 var questionArray = [
     {
-        question: "1We can hook onto the event of a user pressing and releasing a key by referring to ____.",
-        options: [
-            {
-                number: 0,
-                answer: "1event.key"
-            },
-            {
-                number: 1,
-                answer: "Answer document.onkeyup"
-            },
-            {
-                number: 2,
-                answer: "An C"
-            },
-            {
-                number: 3,
-                answer: "An D"
-            }],
-        answer: 1
-    },
-    {
-        question: "2We can get the key a user has pressed by referencing ____.",
-        options: [
-            {
-                number: 0,
-                answer: "Answer 2event.key"
-            },
-            {
-                number: 1,
-                answer: "document.onkeyup"
-            },
-            {
-                number: 2,
-                answer: "An C"
-            },
-            {
-                number: 3,
-                answer: "An D"
-            }],
-        answer: 0
-    }
-]
-
-var QquestionArray = [
-    {
         question: "We can hook onto the event of a user pressing and releasing a key by referring to ____.",
         options: [
             {
-                number: 1,
+                number: 0,
                 answer: "event.key"
             },
             {
-                number: 2,
+                number: 1,
                 answer: "document.onkeyup"
             },
             {
-                number: 3,
-                answer: "Answer C"
+                number: 2,
+                answer: "source code"
             },
             {
-                number: 4,
-                answer: "Answer D"
+                number: 3,
+                answer: "selector"
             }],
-        answer: 2
+        answer: 1
     },
     {
         question: "We can get the key a user has pressed by referencing ____.",
         options: [
             {
-                1: "event.key"
+                number: 0,
+                answer: "event.key"
             },
             {
-                2: "document.onkeyup"
+                number: 1,
+                answer: "document.onkeyup"
             },
             {
-                3: "Answer C"
+                number: 2,
+                answer: "selector"
             },
             {
-                4: "Answer D"
+                number: 3,
+                answer: "source code"
             }],
-        answer: 1
+        answer: 0
     },
     {
         question: "A function's ____ are only visble inside the function body.",
         options: [
             {
-                1: "Answer A"
+                number: 0,
+                answer: "parameters"
             },
             {
-                2: "Answer B"
+                number: 1,
+                answer: "variables"
             },
             {
-                3: "defintions"
+                number: 2,
+                answer: "defitions"
             },
             {
-                4: "arguments"
+                number: 3,
+                answer: "arguments"
             }],
-        answer: 4
+        answer: 3
     },
     {
         question: "Which is not an cornerstone technology of the World Wide Web?",
         options: [
             {
-                1: "HTML"
+                number: 0,
+                answer: "HTML"
             },
             {
-                2: "CSS"
+                number: 1,
+                answer: "CSS"
             },
             {
-                3: "SQL"
+                number: 2,
+                answer: "SQL"
             },
             {
-                4: "JavaScript"
+                number: 3,
+                answer: "JavaScript"
             }],
-        answer: 3
+        answer: 2
     }
 ]
 
