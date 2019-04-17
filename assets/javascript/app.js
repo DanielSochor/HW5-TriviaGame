@@ -2,7 +2,6 @@ $(document).ready(function () {
 
     //Code is verbose because it shuffles the questions and shuffles the answers for each question
 
-    var questionDisplayed = false;
     var shuffledQuestionArray = [];
     var shuffledAnswerArray = [];
     var correctAnswers = 0;
@@ -140,14 +139,11 @@ $(document).ready(function () {
 
     function showScore() {
         console.log("Show your score");
-        $("#timer").text('Your results!:');
+        $("#timer").text('Your results:');
         $("#question, #buttonSection").empty();
-        $("#buttonSection").append('<div>' + "Correct answers: " + correctAnswers + '</div>');
-        $("#buttonSection").append('<div>' + "_" + '</div>');
-        $("#buttonSection").append('<div>' + "Incorrect answers: " + incorrectAnswers + '</div>');
-        $("#buttonSection").append('<div>' + "_" + '</div>');
-        $("#buttonSection").append('<div>' + "Unanswered questions: " + unansweredQuestions + '</div>');
-        $("#buttonSection").append('<div>' + "_" + '</div>');
+        $("#question").append('<div>' + "Correct answers: " + correctAnswers + '</div>');
+        $("#question").append('<div>' + "Incorrect answers: " + incorrectAnswers + '</div>');
+        $("#question").append('<div>' + "Unanswered questions: " + unansweredQuestions + '</div>');
         var restartButton = $("<button>");
         restartButton.addClass("button");
         restartButton.text("Play Again?");
