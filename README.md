@@ -1,5 +1,4 @@
-# HW5-TriviaGame
-Trivia Game using jQuery and Timers
+# Trivia Game using jQuery and Timers
 
 This project is a Trivia Game that uses JavaScript for the logic and jQuery to manipulate HTML. The javascript is broken into one file for the game and one for the questions which allows each to be adjusted independently. The game:
 
